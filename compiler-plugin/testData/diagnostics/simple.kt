@@ -2,10 +2,10 @@
 
 package foo.bar
 
-import org.jetbrains.kotlin.compiler.plugin.template.SomeAnnotation
+import org.<!UNRESOLVED_IMPORT!>jetbrains<!>.kotlin.compiler.plugin.template.SomeAnnotation
 
-@SomeAnnotation
+@<!UNRESOLVED_REFERENCE!>SomeAnnotation<!>
 fun test() {
-    val s = MyClass().foo()
-    s.<!UNRESOLVED_REFERENCE!>inc<!>() // should be an error
+  val s = MyClass().foo()
+  s.<!UNRESOLVED_REFERENCE!>inc<!>() // should be an error
 }
