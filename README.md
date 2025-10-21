@@ -27,5 +27,5 @@ which is pre-configured in this repository.
 
 [//]: # (Links)
 
-[test-framework]: https://github.com/JetBrains/kotlin/blob/2.1.20/compiler/test-infrastructure/ReadMe.md
+[test-framework]: https://github.com/JetBrains/kotlin/blob/master/compiler/test-infrastructure/ReadMe.md
 [test-plugin]: https://github.com/JetBrains/kotlin-compiler-devkit
