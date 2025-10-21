@@ -2,9 +2,9 @@
 
 package foo.bar
 
-import org.<!UNRESOLVED_IMPORT!>jetbrains<!>.kotlin.compiler.plugin.template.SomeAnnotation
+import io.github.kyay10.highkt.SomeAnnotation
 
-@<!UNRESOLVED_REFERENCE!>SomeAnnotation<!>
+@SomeAnnotation
 fun test() {
   val s = MyClass().foo()
   s.<!UNRESOLVED_REFERENCE!>inc<!>() // should be an error
