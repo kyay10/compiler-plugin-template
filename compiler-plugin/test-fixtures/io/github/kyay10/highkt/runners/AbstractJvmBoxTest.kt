@@ -1,8 +1,6 @@
 package io.github.kyay10.highkt.runners
 
-import io.github.kyay10.highkt.services.ExtensionRegistrarConfigurator
-import io.github.kyay10.highkt.services.PluginAnnotationsProvider
-import io.github.kyay10.highkt.services.PluginRuntimeAnnotationsProvider
+import io.github.kyay10.highkt.services.configurePlugin
 import org.jetbrains.kotlin.test.FirParser
 import org.jetbrains.kotlin.test.builders.TestConfigurationBuilder
 import org.jetbrains.kotlin.test.directives.CodegenTestDirectives
@@ -17,35 +15,27 @@ open class AbstractJvmBoxTest : AbstractFirBlackBoxCodegenTestBase(FirParser.Lig
     return EnvironmentBasedStandardLibrariesPathProvider
   }
 
-  override fun configure(builder: TestConfigurationBuilder) {
-    super.configure(builder)
+  override fun configure(builder: TestConfigurationBuilder) = with(builder) {
+    super.configure(this)
+    /*
+     * Containers of different directives, which can be used in tests:
+     * - ModuleStructureDirectives
+     * - LanguageSettingsDirectives
+     * - DiagnosticsDirectives
+     * - FirDiagnosticsDirectives
+     * - CodegenTestDirectives
+     * - JvmEnvironmentConfigurationDirectives
+     *
+     * All of them are located in `org.jetbrains.kotlin.test.directives` package
+     */
+    defaultDirectives {
+      +CodegenTestDirectives.DUMP_IR
+      +FirDiagnosticsDirectives.FIR_DUMP
+      +JvmEnvironmentConfigurationDirectives.FULL_JDK
 
-    with(builder) {
-      /*
-       * Containers of different directives, which can be used in tests:
-       * - ModuleStructureDirectives
-       * - LanguageSettingsDirectives
-       * - DiagnosticsDirectives
-       * - FirDiagnosticsDirectives
-       * - CodegenTestDirectives
-       * - JvmEnvironmentConfigurationDirectives
-       *
-       * All of them are located in `org.jetbrains.kotlin.test.directives` package
-       */
-      defaultDirectives {
-        +CodegenTestDirectives.DUMP_IR
-        +FirDiagnosticsDirectives.FIR_DUMP
-        +JvmEnvironmentConfigurationDirectives.FULL_JDK
-
-        +CodegenTestDirectives.IGNORE_DEXING // Avoids loading R8 from the classpath.
-      }
-
-      useConfigurators(
-        ::PluginAnnotationsProvider,
-        ::ExtensionRegistrarConfigurator
-      )
-
-      useCustomRuntimeClasspathProviders(::PluginRuntimeAnnotationsProvider)
+      +CodegenTestDirectives.IGNORE_DEXING // Avoids loading R8 from the classpath.
     }
+
+    configurePlugin()
   }
 }
