@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
+    `maven-publish`
+    kotlin("compiler.plugin.devkit.functional-test-publishing") version "0.0.1-SNAPSHOT"
 }
 
 kotlin {
@@ -42,6 +44,5 @@ kotlin {
 
     applyDefaultHierarchyTemplate()
 
-    @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
-    abiValidation()
+    @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class) abiValidation()
 }
