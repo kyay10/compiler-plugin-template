@@ -1,11 +1,14 @@
 on:
-  pull_request: {}
+  pull_request: { }
   push:
     branches:
       - master
+      - devkit
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
+  ORG_GRADLE_PROJECT_devKitSpaceUsername: ${{ secrets.DEVKITSPACEUSERNAME }}
+  ORG_GRADLE_PROJECT_devKitSpacePassword: ${{ secrets.DEVKITSPACEPASSWORD }}
 
 jobs:
   build:
