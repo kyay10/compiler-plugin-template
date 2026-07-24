@@ -10,8 +10,3 @@ pluginDevKit {
     developForWithFixtures("2.5.0-dev-498")
     testDataLibraries { common(project(":plugin-annotations")) }
 }
-
-configurations.all {
-    // Check for devkit updates every build for faster development
-    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
-}
