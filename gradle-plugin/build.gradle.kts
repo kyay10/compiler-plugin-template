@@ -1,5 +1,5 @@
 plugins {
-    kotlin("compiler.plugin.devkit.gradle-plugin") version "0.0.1-SNAPSHOT"
+    pluginDevKit("gradle-plugin")
 }
 
 pluginDevKit {
