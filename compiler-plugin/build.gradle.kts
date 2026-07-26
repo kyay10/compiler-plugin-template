@@ -8,5 +8,4 @@ plugins {
 pluginDevKit {
     developForWithFixtures(kotlinToolingVersion)
     developForWithFixtures("2.5.0-dev-498")
-    testDataLibraries { common(project(":plugin-annotations")) }
 }

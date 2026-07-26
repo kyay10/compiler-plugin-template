@@ -2,11 +2,6 @@ plugins {
     pluginDevKit("gradle-plugin")
 }
 
-pluginDevKit {
-    compilerPlugin = project(":compiler-plugin")
-    companionLibrary(project(":plugin-annotations"))
-}
-
 gradlePlugin {
     plugins {
         create("SimplePlugin") {
